@@ -12,13 +12,14 @@ void setup()
 {
     pinMode(ledPin, OUTPUT);
     pinMode(buttonPin, INPUT);
+	Serial.begin(9600);
 }
 
 void loop()
 {
     if (digitalRead(buttonPin) == HIGH)
     {
-
+		Serial.print("\n light on");
         digitalWrite(ledPin, false);
         led = 0;
 
@@ -40,14 +41,7 @@ void togleLED()
 
         if (digitalRead(buttonPin) == HIGH)
         {
-            if (checkDoubleClick())
-            {
-                changeInterval();
-            }
-            else if (!checkDoubleClick())
-            {
                 break;
-            }
         }
         currentMillis = millis();
         if (currentMillis - previousMillis >= interval)
